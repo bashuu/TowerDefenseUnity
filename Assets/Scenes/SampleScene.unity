@@ -634,5 +634,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tower
       objectReference: {fileID: 0}
+    - target: {fileID: 7564641227040833350, guid: 9a20b6d73c851ae49a22fc4925976802, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a20b6d73c851ae49a22fc4925976802, type: 3}
