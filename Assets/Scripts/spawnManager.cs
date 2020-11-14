@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class spawnManager : MonoBehaviour
 {
+    public GameObject gridMap;
+    private Grid grid; 
     class EnemySpawn
     {
         public float interval;
@@ -22,7 +24,9 @@ public class spawnManager : MonoBehaviour
 
     private void Start()
     {
-        enemySpawn = new EnemySpawn(2f, 0f, new Vector3(-10f, 4, 0));
+        
+        grid = gridMap.GetComponent<gridMap>().grid;
+        enemySpawn = new EnemySpawn(2f, 0f, grid.getWorldPoss(0, 13) + grid.offSet);
     }
     void Update()
     {

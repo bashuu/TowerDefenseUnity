@@ -106,7 +106,7 @@ public class tower : MonoBehaviour
                 break;
         }
 
-        Debug.Log(enemy);
+        //Debug.Log(enemy);
         /*Debug.Log(state);*/
     }
 }
