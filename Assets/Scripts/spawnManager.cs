@@ -5,7 +5,8 @@ using UnityEngine;
 public class spawnManager : MonoBehaviour
 {
     public GameObject gridMap;
-    private Grid grid; 
+    private Grid<int> grid; 
+    public GameObject enemy;
     class EnemySpawn
     {
         public float interval;
@@ -19,18 +20,21 @@ public class spawnManager : MonoBehaviour
             poss = aPoss;
         }
     }
-    public GameObject enemy;
     EnemySpawn enemySpawn;
 
     private void Start()
     {
-        
-        grid = gridMap.GetComponent<gridMap>().grid;
-        enemySpawn = new EnemySpawn(2f, 0f, grid.getWorldPoss(0, 13) + grid.offSet);
     }
     void Update()
     {
-        spawnEnemy();
+        if(grid == null)
+        {
+            grid = gridMap.GetComponent<gridMap>().grid;
+            enemySpawn = new EnemySpawn(2f, 0f, grid.getWorldPoss(0, 13) + grid.offSet);
+            Debug.Log(grid);
+        }
+        else
+            spawnEnemy();
     }
 
     void spawnEnemy()

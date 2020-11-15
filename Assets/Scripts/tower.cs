@@ -8,7 +8,6 @@ public class tower : MonoBehaviour
     private float towerAttackSpeed = 0.5f;
     private float attackSpeedCD = 0;
     private int tmp;
-
     public enum State
     {
         Idle,

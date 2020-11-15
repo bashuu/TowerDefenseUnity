@@ -1,16 +1,20 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Runtime.InteropServices.ComTypes;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Grid 
+public class Grid<TGridObject>
 {
 
-    private int widht;
-    private int height;
-    public int[,] gridArray;
+    public int widht;
+    public int height;
+    public TGridObject[,] gridArray;
     public float cellSize;
     public Vector3 offSet;
-    public Grid(int widht, int height, float cellSize)
+    public Grid(int widht, int height, float cellSize, Func<Grid<TGridObject>,int, int, TGridObject> creatGridObject)
     {
         this.widht = widht;
         this.height = height;
@@ -18,11 +22,13 @@ public class Grid
 
         offSet = new Vector3(cellSize, cellSize) * 0.5f;
 
-        gridArray = new int[widht, height];
-        for(int x = 0; x < widht; x++)
+        gridArray = new TGridObject[widht, height];
+        for (int x = 0; x < widht; x++)
         {
-            for(int y = 0; y < height; y++)
+            for (int y = 0; y < height; y++)
             {
+                gridArray[x, y] = creatGridObject(this, x, y);
+                createWorldText(null, x.ToString() + " - " + y.ToString(), getWorldPoss(x, y) + offSet, 10, Color.white, TextAnchor.MiddleCenter);
                 Debug.DrawLine(getWorldPoss(x, y), getWorldPoss(x + 1, y), Color.white, 100f);
                 Debug.DrawLine(getWorldPoss(x, y), getWorldPoss(x, y + 1), Color.white, 100f);
             }
@@ -43,36 +49,55 @@ public class Grid
         return new Vector2Int(x, y);
     }
 
-    public void setVal(int x, int y, int val)
+    public void setGridObject(int x, int y, TGridObject val)
     {
-        if(x >= 0 && y >= 0 && x < widht && y < height)
+        if (x >= 0 && y >= 0 && x < widht && y < height)
         {
             gridArray[x, y] = val;
-        Debug.Log(x + " " + y + " " + gridArray[x, y]);
+            Debug.Log(x + " " + y + " " + gridArray[x, y]);
         }
     }
 
-    public void setVal(Vector3 worldPoss, int val)
+    public void setGridObject(Vector3 worldPoss, TGridObject val)
     {
         int x, y;
         x = getXY(worldPoss).x;
         y = getXY(worldPoss).y;
-        setVal(x, y, val);
+        setGridObject(x, y, val);
 
     }
 
-    public int getVal(int x, int y)
+    public TGridObject getGridObject(int x, int y)
     {
         if (x >= 0 && y >= 0 && x < widht && y < height)
             return gridArray[x, y];
-        return -1 ;
+        return default(TGridObject);
     }
 
-    public int getVal(Vector3 worldPoss)
+    public TGridObject getGridObject(Vector3 worldPoss)
     {
         int x, y;
         x = getXY(worldPoss).x;
         y = getXY(worldPoss).y;
-        return getVal(x, y);
+        return getGridObject(x, y);
     }
+
+
+    private static TextMesh createWorldText(Transform parent, string text, Vector3 localPoss, int fontSize, Color color, TextAnchor textAnchor)
+    {
+        GameObject gameObject = new GameObject("World_Text", typeof(TextMesh));
+        Transform transfrom = gameObject.transform;
+        transfrom.SetParent(parent, false);
+        transfrom.localPosition = localPoss;
+        TextMesh textMesh = gameObject.GetComponent<TextMesh>();
+        textMesh.anchor = textAnchor;
+        //textMesh.alignment = textAlignment;
+        textMesh.text = text;
+        textMesh.fontSize = fontSize;
+        textMesh.color = color;
+        //textMesh.GetComponent<MeshRenderer>().sortingOrder = sortingOrder;
+        return textMesh;
+    }
+
+
 }

@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class gridMap : MonoBehaviour
 {
-    private Vector3 mousePoss;
-    public Grid grid;
-    public GameObject tower;
+    public Grid<int> grid;
+    public int widht = 24;
+    public int height = 14;
+    public float scale = 1f;
+    public PathFinding pathFinding;
 
     private void Start()
     {
-        grid = new Grid(22, 14, 1f);
-        
+        pathFinding = new PathFinding(widht, height);
     }
 
     private void Update()
