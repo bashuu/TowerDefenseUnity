@@ -16,7 +16,6 @@ public class mouseInput : MonoBehaviour
     private Vector3 mousePoss;
     public GameObject towerManager;
     public GameObject gridMap;
-    private Grid<int> grid;
     PathFinding pathFinding;
 
     private void Awake()
@@ -35,17 +34,45 @@ public class mouseInput : MonoBehaviour
 
             x = pathFinding.getGrid().getXY(mousePoss).x;
             y = pathFinding.getGrid().getXY(mousePoss).y;
-           // if (grid.gridArray[x, y] == 0)
-            //{ 
-                //towerManager.GetComponent<towerManager>().createTower(grid.getWorldPoss(x, y) + grid.offSet);
-               // grid.setGridObject(x, y, 5);
-                //Debug.Log(mousePoss);
-            //}
+
+
+                if (pathFinding.getGrid().gridArray[x, y].isWalkable)
+                {   
+                    pathFinding.getGrid().gridArray[x, y].isWalkable = false;
+                    List<PathNode> path = pathFinding.findPath(0, 0, 4, 4);
+                    if (path != null)
+                    {
+
+
+                        towerManager.GetComponent<towerManager>().createTower(pathFinding.getGrid().getWorldPoss(x, y) + pathFinding.getGrid().offSet);
+                        pathFinding.getGrid().gridArray[x, y].isWalkable = false;
+                    //Debug.Log(mousePoss);
+                    }
+                    else
+                    {
+                        pathFinding.getGrid().gridArray[x, y].isWalkable = true;
+                    }
+                }
+
+
+           
+        }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            if (pathFinding == null)
+                pathFinding = gridMap.GetComponent<gridMap>().pathFinding;
+            int x, y;
+            mousePoss = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 mousePoss2D = new Vector2(mousePoss.x, mousePoss.y);
+
+            x = pathFinding.getGrid().getXY(mousePoss).x;
+            y = pathFinding.getGrid().getXY(mousePoss).y;
 
             List<PathNode> path = pathFinding.findPath(0, 0, x, y);
-            if(path != null)
+            if (path != null)
             {
-                for( int i = 0; i < path.Count; i++)
+                for (int i = 0; i < path.Count; i++)
                 {
                     Debug.Log(path[i].x + " " + path[i].y);
                 }

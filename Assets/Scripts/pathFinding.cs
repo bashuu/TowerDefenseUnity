@@ -10,7 +10,9 @@ using System.IO;
 public class PathFinding 
 {
     private const int MOVE_STRAIGHT_COST = 10;
-    private const int MOVE_DIAGONAL_COST = 14;
+    //private const int MOVE_DIAGONAL_COST = 14;
+
+    public static PathFinding Instance { get; private set; }
 
     private Grid<PathNode> grid;
     private List<PathNode> openList;
@@ -19,9 +21,29 @@ public class PathFinding
 
     public PathFinding(int widht, int height)
     {
+        Instance = this;
         grid = new Grid<PathNode>(widht, height, 2f, (Grid<PathNode>g, int x, int y) => new PathNode(g, x, y));
     }
 
+    public List<Vector3> findPath(Vector3 startWorldPoss, Vector3 endWorldPoss) 
+    {
+        int startX, startY;
+        int endX, endY;
+        startX = grid.getXY(startWorldPoss).x;
+        startY = grid.getXY(startWorldPoss).y;
+        endX = grid.getXY(endWorldPoss).x;
+        endY = grid.getXY(endWorldPoss).y;
+        List<PathNode> path = findPath(startX, startY, endX, endY);
+        if(path == null)
+            return null;
+
+        List<Vector3> vectorPath = new List<Vector3>();
+        foreach(PathNode pathNode in path)
+        {
+            vectorPath.Add((new Vector3(pathNode.x, pathNode.y) * grid.cellSize) + Vector3.one * grid.cellSize * 0.5f);
+        }
+        return vectorPath;
+    }
     public List<PathNode> findPath(int startX, int startY, int endX, int endY)
     {
         PathNode startNode = grid.getGridObject(startX, startY);
@@ -62,6 +84,11 @@ public class PathFinding
             {
                 if (closedList.Contains(neighbourNode))
                     continue;
+                if(!neighbourNode.isWalkable)
+                {
+                    closedList.Add(neighbourNode);
+                    continue;
+                }
 
                 int tentGCost = currentNode.gCost + CalculateDisCost(currentNode, neighbourNode);
 
@@ -95,11 +122,11 @@ public class PathFinding
             //left
             neighbourList.Add(getNode(currentNode.x - 1, currentNode.y));
             //left down
-            if(currentNode.y - 1 >= 0)
-                neighbourList.Add(getNode(currentNode.x - 1, currentNode.y - 1));
+            //if(currentNode.y - 1 >= 0)
+               // neighbourList.Add(getNode(currentNode.x - 1, currentNode.y - 1));
             //left up
-            if(currentNode.y + 1 < grid.height)
-                neighbourList.Add(getNode(currentNode.x - 1, currentNode.y + 1));
+           // if(currentNode.y + 1 < grid.height)
+             //   neighbourList.Add(getNode(currentNode.x - 1, currentNode.y + 1));
 
         }
 
@@ -108,12 +135,12 @@ public class PathFinding
             //right
             neighbourList.Add(getNode(currentNode.x + 1, currentNode.y));
             //right down
-            if(currentNode.y - 1 >= 0)
-                neighbourList.Add(getNode(currentNode.x + 1, currentNode.y - 1));
+            //if(currentNode.y - 1 >= 0)
+                //neighbourList.Add(getNode(currentNode.x + 1, currentNode.y - 1));
 
             //right up
-            if(currentNode.y + 1 < grid.height)
-                neighbourList.Add(getNode(currentNode.x + 1, currentNode.y + 1));
+            //if(currentNode.y + 1 < grid.height)
+               // neighbourList.Add(getNode(currentNode.x + 1, currentNode.y + 1));
 
 
         }
@@ -160,7 +187,8 @@ public class PathFinding
     {
         int xDis = Mathf.Abs(a.x - b.x);
         int yDis = Mathf.Abs(a.y - b.y);
-        return MOVE_DIAGONAL_COST * Mathf.Min(xDis, yDis) + MOVE_STRAIGHT_COST * Mathf.Abs(xDis - yDis);
+        //return MOVE_DIAGONAL_COST * Mathf.Min(xDis, yDis) + MOVE_STRAIGHT_COST * Mathf.Abs(xDis - yDis);
+        return MOVE_STRAIGHT_COST* Mathf.Abs(xDis - yDis);
 
     }
 
