@@ -1,49 +1,39 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class spawnManager : MonoBehaviour
 {
-    public GameObject gridMap;
-    private Grid<int> grid; 
     public GameObject enemy;
-    class EnemySpawn
-    {
-        public float interval;
-        public float time;
-        public Vector3 poss;
+    private PathFinding pathFinding;
+    public float interval;
+    public float time;
+    public GameObject gridMap;
+    private Vector3 poss;
 
-        public EnemySpawn(float aInterval, float aTime, Vector3 aPoss)
-        {
-            interval = aInterval;
-            time = aTime;
-            poss = aPoss;
-        }
+    private void Awake()
+    {
+        gridMap = GameObject.Find("GridMap");
     }
-    EnemySpawn enemySpawn;
 
     private void Start()
     {
+        pathFinding = gridMap.GetComponent<gridMap>().pathFinding;
     }
     void Update()
     {
-        if(grid == null)
-        {
-            grid = gridMap.GetComponent<gridMap>().grid;
-            enemySpawn = new EnemySpawn(2f, 0f, grid.getWorldPoss(0, 13) + grid.offSet);
-            Debug.Log(grid);
-        }
-        else
-            spawnEnemy();
+        
+        spawnEnemy();
     }
 
     void spawnEnemy()
     {
-        enemySpawn.time -= Time.deltaTime;
-        if (enemySpawn.time <= 0)
+        time -= Time.deltaTime;
+        if (time <= 0)
         {
-            Instantiate(enemy, enemySpawn.poss, Quaternion.identity);
-            enemySpawn.time = enemySpawn.interval;
+            Instantiate(enemy, pathFinding.getGrid().getWorldPoss(0,6) + pathFinding.getGrid().offSet, Quaternion.identity);
+            time = interval;
         }
     }
 }

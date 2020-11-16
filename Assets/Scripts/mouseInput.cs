@@ -39,14 +39,14 @@ public class mouseInput : MonoBehaviour
                 if (pathFinding.getGrid().gridArray[x, y].isWalkable)
                 {   
                     pathFinding.getGrid().gridArray[x, y].isWalkable = false;
-                    List<PathNode> path = pathFinding.findPath(0, 0, 4, 4);
+                    List<PathNode> path = pathFinding.findPath(0, 6, 10, 0);
                     if (path != null)
                     {
 
 
                         towerManager.GetComponent<towerManager>().createTower(pathFinding.getGrid().getWorldPoss(x, y) + pathFinding.getGrid().offSet);
                         pathFinding.getGrid().gridArray[x, y].isWalkable = false;
-                    //Debug.Log(mousePoss);
+                        //Debug.Log(mousePoss);
                     }
                     else
                     {

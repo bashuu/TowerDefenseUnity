@@ -12,16 +12,15 @@ public class PathFinding
     private const int MOVE_STRAIGHT_COST = 10;
     //private const int MOVE_DIAGONAL_COST = 14;
 
-    public static PathFinding Instance { get; private set; }
 
     private Grid<PathNode> grid;
     private List<PathNode> openList;
     private List<PathNode> closedList;
+    public List<Vector3> path;
 
 
     public PathFinding(int widht, int height)
     {
-        Instance = this;
         grid = new Grid<PathNode>(widht, height, 2f, (Grid<PathNode>g, int x, int y) => new PathNode(g, x, y));
     }
 
@@ -122,12 +121,12 @@ public class PathFinding
             //left
             neighbourList.Add(getNode(currentNode.x - 1, currentNode.y));
             //left down
-            //if(currentNode.y - 1 >= 0)
-               // neighbourList.Add(getNode(currentNode.x - 1, currentNode.y - 1));
+            /*if (currentNode.y - 1 >= 0)
+                neighbourList.Add(getNode(currentNode.x - 1, currentNode.y - 1));*/
             //left up
-           // if(currentNode.y + 1 < grid.height)
-             //   neighbourList.Add(getNode(currentNode.x - 1, currentNode.y + 1));
-
+            /*if (currentNode.y + 1 < grid.height)
+                neighbourList.Add(getNode(currentNode.x - 1, currentNode.y + 1));
+*/
         }
 
         if(currentNode.x + 1 < grid.widht)
@@ -135,13 +134,13 @@ public class PathFinding
             //right
             neighbourList.Add(getNode(currentNode.x + 1, currentNode.y));
             //right down
-            //if(currentNode.y - 1 >= 0)
-                //neighbourList.Add(getNode(currentNode.x + 1, currentNode.y - 1));
-
+            /*if (currentNode.y - 1 >= 0)
+                neighbourList.Add(getNode(currentNode.x + 1, currentNode.y - 1));
+*/
             //right up
-            //if(currentNode.y + 1 < grid.height)
-               // neighbourList.Add(getNode(currentNode.x + 1, currentNode.y + 1));
-
+            /*if (currentNode.y + 1 < grid.height)
+                neighbourList.Add(getNode(currentNode.x + 1, currentNode.y + 1));
+*/
 
         }
          //down
@@ -187,8 +186,9 @@ public class PathFinding
     {
         int xDis = Mathf.Abs(a.x - b.x);
         int yDis = Mathf.Abs(a.y - b.y);
-        //return MOVE_DIAGONAL_COST * Mathf.Min(xDis, yDis) + MOVE_STRAIGHT_COST * Mathf.Abs(xDis - yDis);
-        return MOVE_STRAIGHT_COST* Mathf.Abs(xDis - yDis);
+
+        /*return MOVE_DIAGONAL_COST * Mathf.Min(xDis, yDis) + MOVE_STRAIGHT_COST * Mathf.Abs(xDis - yDis);*/
+        return MOVE_STRAIGHT_COST * Mathf.Abs(xDis - yDis);
 
     }
 
