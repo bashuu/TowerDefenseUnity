@@ -7,33 +7,43 @@ public class spawnManager : MonoBehaviour
 {
     public GameObject enemy;
     private PathFinding pathFinding;
-    public float interval;
-    public float time;
+    public float wolfInterval;
+    public float wolfSpawnTime;
+    public int wolfCount;
     public GameObject gridMap;
     private Vector3 poss;
-
+    [SerializeField] private levelData levelData;
     private void Awake()
     {
+        initLevel();
         gridMap = GameObject.Find("GridMap");
     }
 
     private void Start()
     {
         pathFinding = gridMap.GetComponent<gridMap>().pathFinding;
+
     }
     void Update()
     {
         
-        spawnEnemy();
+        spawnWolf();
     }
 
-    void spawnEnemy()
+    void initLevel()
     {
-        time -= Time.deltaTime;
-        if (time <= 0)
+        wolfInterval = levelData.wolfInterval;
+        wolfSpawnTime = levelData.wolfSpawnTime;
+        wolfCount = levelData.wolfCount;
+
+    }
+    void spawnWolf()
+    {
+        wolfSpawnTime -= Time.deltaTime;
+        if (wolfSpawnTime <= 0)
         {
             Instantiate(enemy, pathFinding.getGrid().getWorldPoss(0,6) + pathFinding.getGrid().offSet, Quaternion.identity);
-            time = interval;
+            wolfSpawnTime = wolfInterval;
         }
     }
 }
