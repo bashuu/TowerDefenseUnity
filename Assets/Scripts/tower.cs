@@ -6,8 +6,9 @@ public class tower : MonoBehaviour
 {
     public GameObject enemy;
     private float towerAttackSpeed = 0.5f;
-    private float attackSpeedCD = 0;
+    private float attackSpeedCD = 0.1f;
     private int tmp;
+    private int towerDamage = 0;
     public enum State
     {
         Idle,
@@ -28,7 +29,7 @@ public class tower : MonoBehaviour
             switch (state){
                 case State.Idle:
                     enemy = coll.gameObject;
-                    state = State.Idle;
+                    state = State.Attack;
                     break;
                 case State.Attack:
                     break;
@@ -82,10 +83,6 @@ public class tower : MonoBehaviour
 
     private void Update()
     {
-        if(enemy == null)
-        {
-            state = State.Idle;
-        }
 
         switch (state)
         {
@@ -95,7 +92,8 @@ public class tower : MonoBehaviour
                 attackSpeedCD -= Time.deltaTime;
                 if (attackSpeedCD <= 0)
                 {
-                    enemy.GetComponent<enemy>().hp -= 5;
+                    enemy.GetComponent<enemy>().hp -= towerDamage;
+                    bulletRayCast.shoot(transform.position, enemy.transform.position);
                     attackSpeedCD = towerAttackSpeed;
                 }
 
@@ -104,8 +102,12 @@ public class tower : MonoBehaviour
                 state = State.Idle;
                 break;
         }
+        if(enemy == null)
+        {
+            state = State.Idle;
+        }
 
-        //Debug.Log(enemy);
-        /*Debug.Log(state);*/
+/*        Debug.Log(enemy);
+        Debug.Log(state);*/
     }
 }
