@@ -13,7 +13,8 @@ public class enemy : MonoBehaviour
     private PathFinding pathFinding;
     private GameObject gridMap;
     public Animator animator;
-    [SerializeField] private wolfData wolfData;
+    [SerializeField] private enemyData enemyData;
+
 
 
     private void Awake()
@@ -31,8 +32,8 @@ public class enemy : MonoBehaviour
 
     private void initEnemy()
     {
-        speed = wolfData.speed;
-        hp = wolfData.hitPoints;
+        speed = enemyData.speed;
+        hp = enemyData.hitPoints;
     }
         
     private void Update()
@@ -87,7 +88,17 @@ public class enemy : MonoBehaviour
         {
             // Multiply the player's x local scale by -1
             Vector3 theScale = transform.localScale;
-            theScale.x *= -1;
+  
+            theScale.x = -1;
+
+            transform.localScale = theScale;
+        }
+        else
+        {
+            Vector3 theScale = transform.localScale;
+
+            theScale.x = 1;
+
             transform.localScale = theScale;
         }
         

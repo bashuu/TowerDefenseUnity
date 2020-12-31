@@ -12,7 +12,7 @@ public class triggerDir : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D coll)
     {
 
-        if (coll.tag == "Enemy")
+        if (coll.tag == "enemy")
         {
             switch (dir)
             {

@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class tower : MonoBehaviour
 {
-    public GameObject enemy;
-    private float towerAttackSpeed = 0.5f;
-    private float attackSpeedCD = 0.1f;
+    private GameObject enemy;
+    private GameObject towerType;
+    private float towerAttackSpeed;
+    private float attackSpeed;
     private int tmp;
-    private int towerDamage = 0;
+    private float towerDamage;
+    [SerializeField] private towerData towerData;
     public enum State
     {
         Idle,
@@ -20,6 +22,10 @@ public class tower : MonoBehaviour
     private void Start()
     {
         state = State.Idle;
+        towerDamage = towerData.towerDamage;
+        attackSpeed = towerData.attackSpeed;
+        towerAttackSpeed = towerData.towerAttackSpeed;
+        towerType = towerData.tower;
     }
 
     private void OnTriggerEnter2D(Collider2D coll)
@@ -89,12 +95,12 @@ public class tower : MonoBehaviour
             case State.Idle:
                 break;
             case State.Attack:
-                attackSpeedCD -= Time.deltaTime;
-                if (attackSpeedCD <= 0)
+                attackSpeed -= Time.deltaTime;
+                if (attackSpeed <= 0)
                 {
                     enemy.GetComponent<enemy>().hp -= towerDamage;
                     bulletRayCast.shoot(transform.position, enemy.transform.position);
-                    attackSpeedCD = towerAttackSpeed;
+                    attackSpeed = towerAttackSpeed;
                 }
 
                 break;
@@ -110,4 +116,5 @@ public class tower : MonoBehaviour
 /*        Debug.Log(enemy);
         Debug.Log(state);*/
     }
+
 }

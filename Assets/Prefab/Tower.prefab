@@ -84,6 +84,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 0}
+  towerData: {fileID: 11400000, guid: 15e7226739981724aa341684dad5c1e9, type: 2}
   state: 0
 --- !u!1 &5795409058795041636
 GameObject:
@@ -207,7 +208,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.78125, y: 0.78125}
+    oldSize: {x: 0.5, y: 0.5}
     newSize: {x: 0.78125, y: 0.78125}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

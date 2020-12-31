@@ -244,10 +244,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dafae7b3908675f4996575201d7d24ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 3059785110988830980, guid: ddf1bf02ed4393e4ab77a9faad21a59d, type: 3}
-  interval: 5
-  time: 5
+  wolfCount: 0
+  roundNumber: 0
   gridMap: {fileID: 0}
+  levelData: {fileID: 11400000, guid: 94f2833724cf9c54aa0a8f614487a64c, type: 2}
 --- !u!4 &276293128
 Transform:
   m_ObjectHideFlags: 0
@@ -436,6 +436,54 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1247504975
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1247504977}
+  - component: {fileID: 1247504976}
+  m_Layer: 0
+  m_Name: Panthion
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1247504976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1247504975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d210bd0725df0e64f8e4e051fbc680de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movement: {x: 0, y: 0, z: 0}
+  speed: 0
+  hp: 0
+  animator: {fileID: 0}
+  wolfData: {fileID: 11400000, guid: 13b842c7380582f49ba2618ac21a9a23, type: 2}
+--- !u!4 &1247504977
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1247504975}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 10.490229, y: 5.7560554, z: -0.5239793}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2068529925
 GameObject:
   m_ObjectHideFlags: 0
@@ -466,6 +514,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tower: {fileID: 5404496384414937656, guid: 9a20b6d73c851ae49a22fc4925976802, type: 3}
+  towerData: {fileID: 0}
 --- !u!4 &2068529927
 Transform:
   m_ObjectHideFlags: 0

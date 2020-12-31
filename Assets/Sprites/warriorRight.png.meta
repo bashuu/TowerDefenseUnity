@@ -1,19 +1,25 @@
 fileFormatVersion: 2
-guid: db53f2be823bb5b4e85c41369629f608
+guid: 73a14246f44f0374f8606a763f9c4369
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6599892720060060220
-    second: wolfRight_0
+      213: -5062903922767554065
+    second: warriorRight_0
   - first:
-      213: 3861427840601092482
-    second: wolfRight_1
+      213: 604905263772426504
+    second: warriorRight_1
   - first:
-      213: -2629235738689236781
-    second: wolfRight_2
+      213: -8217325110112616725
+    second: warriorRight_2
   - first:
-      213: 635533111596875710
-    second: wolfRight_3
+      213: -6450117647777637548
+    second: warriorRight_3
+  - first:
+      213: 7342671119567384362
+    second: warriorRight_4
+  - first:
+      213: -3418954421620715038
+    second: warriorRight_5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -113,85 +119,127 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: wolfRight_0
+      name: warriorRight_0
       rect:
         serializedVersion: 2
         x: 0
         y: 50
-        width: 70
+        width: 50
         height: 50
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c32ddde0677879b50800000000000000
-      internalID: 6599892720060060220
+      spriteID: fe91287e4b3fcb9b0800000000000000
+      internalID: -5062903922767554065
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wolfRight_1
+      name: warriorRight_1
       rect:
         serializedVersion: 2
-        x: 70
+        x: 50
         y: 50
-        width: 70
+        width: 50
         height: 50
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 281f4dc892c869530800000000000000
-      internalID: 3861427840601092482
+      spriteID: 8016be9e12e056800800000000000000
+      internalID: 604905263772426504
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wolfRight_2
+      name: warriorRight_2
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 50
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: beef6df795236fd80800000000000000
+      internalID: -8217325110112616725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: warriorRight_3
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 70
+        width: 50
         height: 50
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3d09aa4a604138bd0800000000000000
-      internalID: -2629235738689236781
+      spriteID: 45b5cbc6c249c76a0800000000000000
+      internalID: -6450117647777637548
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wolfRight_3
+      name: warriorRight_4
       rect:
         serializedVersion: 2
-        x: 70
+        x: 50
         y: 0
-        width: 70
+        width: 50
         height: 50
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ebffabf6ffdd1d800800000000000000
-      internalID: 635533111596875710
+      spriteID: a2f6558ea7866e560800000000000000
+      internalID: 7342671119567384362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: warriorRight_5
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 0
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e1db04611f6d80d0800000000000000
+      internalID: -3418954421620715038
       vertices: []
       indices: 
       edges: []
