@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 068b1dcdeeee1024fa5531048c8875e9, type: 3}
-  m_Name: enemyData
+  m_Name: panthionData
   m_EditorClassIdentifier: 
-  hitPoints: 0
-  speed: 0
+  hitPoints: 20
+  speed: 2

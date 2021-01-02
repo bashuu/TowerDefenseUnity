@@ -28,12 +28,12 @@ public class Grid<TGridObject>
             for (int y = 0; y < height; y++)
             {
                 gridArray[x, y] = creatGridObject(this, x, y);
-                createWorldText(null, x.ToString() + " - " + y.ToString(), getWorldPoss(x, y) + offSet, 10, Color.white, TextAnchor.MiddleCenter);
-                Debug.DrawLine(getWorldPoss(x, y), getWorldPoss(x + 1, y), Color.white, 100f);
-                Debug.DrawLine(getWorldPoss(x, y), getWorldPoss(x, y + 1), Color.white, 100f);
+                //createWorldText(null, x.ToString() + " - " + y.ToString(), getWorldPoss(x, y) + offSet, 10, Color.white, TextAnchor.MiddleCenter);
+                //Debug.DrawLine(getWorldPoss(x, y), getWorldPoss(x + 1, y), Color.white, 100f);
+                //Debug.DrawLine(getWorldPoss(x, y), getWorldPoss(x, y + 1), Color.white, 100f);
             }
-            Debug.DrawLine(getWorldPoss(0, height), getWorldPoss(widht, height), Color.white, 100f);
-            Debug.DrawLine(getWorldPoss(widht, 0), getWorldPoss(widht, height), Color.white, 100f);
+            //Debug.DrawLine(getWorldPoss(0, height), getWorldPoss(widht, height), Color.white, 100f);
+            //Debug.DrawLine(getWorldPoss(widht, 0), getWorldPoss(widht, height), Color.white, 100f);
         }
     }
 

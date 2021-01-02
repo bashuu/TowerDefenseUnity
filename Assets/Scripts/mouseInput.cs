@@ -6,21 +6,19 @@ using UnityEngine;
 
 public class mouseInput : MonoBehaviour
 {
-    /*
-     * 5 = tower;
-     * 
-     * 
-     * 
-     * 
-     */
+
     private Vector3 mousePoss;
     public GameObject towerManager;
     public GameObject gridMap;
+    public GameObject line;
+
     PathFinding pathFinding;
+
 
     private void Awake()
     {
         pathFinding = gridMap.GetComponent<gridMap>().pathFinding;
+
     }
     void Update()
     {   
@@ -39,19 +37,20 @@ public class mouseInput : MonoBehaviour
                 if (pathFinding.getGrid().gridArray[x, y].isWalkable)
                 {   
                     pathFinding.getGrid().gridArray[x, y].isWalkable = false;
-                    List<PathNode> path = pathFinding.findPath(0, 6, 10, 0);
+                    List<Vector3> path = pathFinding.findPath(pathFinding.getGrid().getWorldPoss(0, 6), pathFinding.getGrid().getWorldPoss(10, 0));
                     if (path != null)
-                    {
+                        {
 
-
-                        towerManager.GetComponent<towerManager>().createTower(pathFinding.getGrid().getWorldPoss(x, y) + pathFinding.getGrid().offSet);
-                        pathFinding.getGrid().gridArray[x, y].isWalkable = false;
-                        //Debug.Log(mousePoss);
-                    }
-                    else
-                    {
-                        pathFinding.getGrid().gridArray[x, y].isWalkable = true;
-                    }
+                            towerManager.GetComponent<towerManager>().createTower(pathFinding.getGrid().getWorldPoss(x, y) + pathFinding.getGrid().offSet);
+                            path = pathFinding.findPath(pathFinding.getGrid().getWorldPoss(0, 6), pathFinding.getGrid().getWorldPoss(10, 0));
+                            pathFinding.getGrid().gridArray[x, y].isWalkable = false;
+                            line.GetComponent<drawLine>().drawPath(path);
+                            //Debug.Log(mousePoss);
+                        }
+                        else
+                        {
+                            pathFinding.getGrid().gridArray[x, y].isWalkable = true;
+                        }
                 }
 
 

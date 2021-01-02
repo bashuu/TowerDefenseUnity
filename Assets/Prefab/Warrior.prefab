@@ -51,7 +51,7 @@ MonoBehaviour:
   speed: 5
   hp: 10
   animator: {fileID: 0}
-  enemyData: {fileID: 11400000, guid: 444c23c1db1931c448edf618bf82e393, type: 2}
+  enemyData: {fileID: 11400000, guid: 3a5206ba7ff00364381a60a65258e25e, type: 2}
 --- !u!50 &2426195815234461257
 Rigidbody2D:
   serializedVersion: 4

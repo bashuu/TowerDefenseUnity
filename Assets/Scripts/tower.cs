@@ -5,12 +5,12 @@ using UnityEngine;
 public class tower : MonoBehaviour
 {
     private GameObject enemy;
-    private GameObject towerType;
     private float towerAttackSpeed;
     private float attackSpeed;
     private int tmp;
     private float towerDamage;
     [SerializeField] private towerData towerData;
+
     public enum State
     {
         Idle,
@@ -25,7 +25,6 @@ public class tower : MonoBehaviour
         towerDamage = towerData.towerDamage;
         attackSpeed = towerData.attackSpeed;
         towerAttackSpeed = towerData.towerAttackSpeed;
-        towerType = towerData.tower;
     }
 
     private void OnTriggerEnter2D(Collider2D coll)
