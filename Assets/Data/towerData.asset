@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerAttackSpeed: 1
   attackSpeed: 1
-  towerDamage: 0
+  towerDamage: 5
   tower: {fileID: 5404496384414937656, guid: 9a20b6d73c851ae49a22fc4925976802, type: 3}

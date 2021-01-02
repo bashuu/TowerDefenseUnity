@@ -8,4 +8,6 @@ public class enemyData :ScriptableObject
 {
     public float hitPoints;
     public float speed;
+
+    
 }

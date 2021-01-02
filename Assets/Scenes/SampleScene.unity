@@ -136,9 +136,9 @@ GameObject:
   - component: {fileID: 112599288}
   - component: {fileID: 112599287}
   m_Layer: 0
-  m_Name: GameLogics
+  m_Name: EndPoint
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -213,7 +213,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &276293126
 GameObject:
@@ -226,7 +226,7 @@ GameObject:
   - component: {fileID: 276293128}
   - component: {fileID: 276293127}
   m_Layer: 0
-  m_Name: SpawnManager
+  m_Name: GameLogics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -244,12 +244,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dafae7b3908675f4996575201d7d24ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wolfCount: 0
-  panthionCount: 0
-  warriorCount: 0
-  roundNumber: 0
-  gridMap: {fileID: 0}
+  roundNumber: 1
+  tower: {fileID: 5404496384414937656, guid: 9a20b6d73c851ae49a22fc4925976802, type: 3}
   levelData: {fileID: 11400000, guid: 94f2833724cf9c54aa0a8f614487a64c, type: 2}
+  mouseInput: {fileID: 0}
+  state: 0
 --- !u!4 &276293128
 Transform:
   m_ObjectHideFlags: 0
@@ -258,7 +257,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 276293126}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -20.63, y: 0.8779333, z: -10.995426}
+  m_LocalPosition: {x: -2, y: 13, z: -10.995426}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -308,7 +307,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
@@ -422,9 +421,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06298a21c91bbc04ba150f8145103417, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerManager: {fileID: 2068529925}
   gridMap: {fileID: 323346915}
   line: {fileID: 1224403342}
+  gameLogics: {fileID: 276293126}
 --- !u!4 &1026940159
 Transform:
   m_ObjectHideFlags: 0
@@ -578,50 +577,5 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2068529925
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2068529927}
-  - component: {fileID: 2068529926}
-  m_Layer: 0
-  m_Name: TowerManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2068529926
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2068529925}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf5afb3bb2433034b844bb4ee2a8ed25, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tower: {fileID: 5404496384414937656, guid: 9a20b6d73c851ae49a22fc4925976802, type: 3}
-  towerData: {fileID: 0}
---- !u!4 &2068529927
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2068529925}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -23.08, y: 0.9722087, z: -12.904317}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

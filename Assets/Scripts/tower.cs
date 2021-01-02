@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class tower : MonoBehaviour
 {
     private GameObject enemy;
+    public GameObject bullet;
     private float towerAttackSpeed;
     private float attackSpeed;
     private int tmp;
@@ -97,9 +99,11 @@ public class tower : MonoBehaviour
                 attackSpeed -= Time.deltaTime;
                 if (attackSpeed <= 0)
                 {
-                    enemy.GetComponent<enemy>().hp -= towerDamage;
-                    bulletRayCast.shoot(transform.position, enemy.transform.position);
+                    /* enemy.GetComponent<enemy>().hp -= towerDamage;
+                     bulletRayCast.shoot(transform.position, enemy.transform.position);*/
+                    initBullet();
                     attackSpeed = towerAttackSpeed;
+
                 }
 
                 break;
@@ -116,4 +120,17 @@ public class tower : MonoBehaviour
         Debug.Log(state);*/
     }
 
+    private void initBullet()
+    {
+        GameObject newBullet;
+
+        Vector2 direction = enemy.transform.position - transform.position;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+        transform.rotation = Quaternion.Euler(0f, 0f, angle);
+
+        newBullet = Instantiate(bullet, transform.position, Quaternion.Euler(0f, 0f, angle) );
+        newBullet.GetComponent<bullet>().damage = towerDamage;
+        newBullet.GetComponent<Rigidbody2D>().velocity = transform.right * 20f;
+    }
 }

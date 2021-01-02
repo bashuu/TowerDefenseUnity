@@ -9,4 +9,6 @@ public class towerData : ScriptableObject
     public float attackSpeed= 0.1f;
     public float towerDamage = 0;
     public GameObject tower;
+
+
 }

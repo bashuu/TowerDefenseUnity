@@ -2,62 +2,67 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq.Expressions;
+using UnityEditorInternal;
 using UnityEngine;
 
 public class mouseInput : MonoBehaviour
 {
 
     private Vector3 mousePoss;
-    public GameObject towerManager;
     public GameObject gridMap;
     public GameObject line;
+    public GameObject gameLogics;
 
     PathFinding pathFinding;
-
 
     private void Awake()
     {
         pathFinding = gridMap.GetComponent<gridMap>().pathFinding;
+        
 
     }
     void Update()
     {   
         if (Input.GetMouseButtonDown(0))
         {
-            if(pathFinding == null)
-                pathFinding = gridMap.GetComponent<gridMap>().pathFinding;
-            int x, y;
-            mousePoss = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 mousePoss2D = new Vector2(mousePoss.x, mousePoss.y);
+            if(gameLogics.GetComponent<gameLogics>().state == global::gameLogics.State.Build)
+            {
 
-            x = pathFinding.getGrid().getXY(mousePoss).x;
-            y = pathFinding.getGrid().getXY(mousePoss).y;
+                if(pathFinding == null)
+                    pathFinding = gridMap.GetComponent<gridMap>().pathFinding;
+                int x, y;
+                mousePoss = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                Vector2 mousePoss2D = new Vector2(mousePoss.x, mousePoss.y);
+
+                x = pathFinding.getGrid().getXY(mousePoss).x;
+                y = pathFinding.getGrid().getXY(mousePoss).y;
 
 
-                if (pathFinding.getGrid().gridArray[x, y].isWalkable)
-                {   
-                    pathFinding.getGrid().gridArray[x, y].isWalkable = false;
-                    List<Vector3> path = pathFinding.findPath(pathFinding.getGrid().getWorldPoss(0, 6), pathFinding.getGrid().getWorldPoss(10, 0));
-                    if (path != null)
-                        {
+                    if (pathFinding.getGrid().gridArray[x, y].isWalkable)
+                    {   
+                        pathFinding.getGrid().gridArray[x, y].isWalkable = false;
+                        List<Vector3> path = pathFinding.findPath(pathFinding.getGrid().getWorldPoss(0, 6), pathFinding.getGrid().getWorldPoss(10, 0));
+                        if (path != null)
+                    {
 
-                            towerManager.GetComponent<towerManager>().createTower(pathFinding.getGrid().getWorldPoss(x, y) + pathFinding.getGrid().offSet);
-                            path = pathFinding.findPath(pathFinding.getGrid().getWorldPoss(0, 6), pathFinding.getGrid().getWorldPoss(10, 0));
-                            pathFinding.getGrid().gridArray[x, y].isWalkable = false;
-                            line.GetComponent<drawLine>().drawPath(path);
-                            //Debug.Log(mousePoss);
-                        }
-                        else
-                        {
-                            pathFinding.getGrid().gridArray[x, y].isWalkable = true;
-                        }
-                }
+                                gameLogics.GetComponent<gameLogics>().createTower(pathFinding.getGrid().getWorldPoss(x, y) + pathFinding.getGrid().offSet);
+                                path = pathFinding.findPath(pathFinding.getGrid().getWorldPoss(0, 6), pathFinding.getGrid().getWorldPoss(10, 0));
+                                pathFinding.getGrid().gridArray[x, y].isWalkable = false;
+                                line.GetComponent<drawLine>().drawPath(path);
+                                //Debug.Log(mousePoss);
+                            }
+                            else
+                            {
+                                pathFinding.getGrid().gridArray[x, y].isWalkable = true;
+                            }
+                    }
 
+            }
 
            
         }
 
-        if (Input.GetMouseButtonDown(1))
+       /* if (Input.GetMouseButtonDown(1))
         {
             if (pathFinding == null)
                 pathFinding = gridMap.GetComponent<gridMap>().pathFinding;
@@ -76,6 +81,6 @@ public class mouseInput : MonoBehaviour
                     Debug.Log(path[i].x + " " + path[i].y);
                 }
             }
-        }
+        }*/
     }
 }

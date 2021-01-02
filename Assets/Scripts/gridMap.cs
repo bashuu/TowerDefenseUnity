@@ -8,8 +8,7 @@ public class gridMap : MonoBehaviour
     public int height;
     public PathFinding pathFinding;
     public float scale;
-    private List<Vector3> pathVectorList;
-    private int currPathIndex = 0;
+
 
     private void Awake()
     {

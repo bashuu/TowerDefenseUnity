@@ -18,6 +18,8 @@ public class levelData : ScriptableObject
     public float warriorInterval;
     public float warriorSpawnTime;
 
+    public Vector2Int gridSpawnPosition;
+
     public GameObject wolf;
     public GameObject panthion;
     public GameObject warrior;
