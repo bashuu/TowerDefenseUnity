@@ -1,13 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class tower : MonoBehaviour
 {
-    public GameObject enemy;
-    private float towerAttackSpeed = 0.5f;
-    private float attackSpeedCD = 0;
+    private GameObject enemy;
+    public GameObject bullet;
+    private float towerAttackSpeed;
+    private float attackSpeed;
     private int tmp;
+    private float towerDamage;
+    [SerializeField] private towerData towerData;
+
     public enum State
     {
         Idle,
@@ -19,6 +24,9 @@ public class tower : MonoBehaviour
     private void Start()
     {
         state = State.Idle;
+        towerDamage = towerData.towerDamage;
+        attackSpeed = towerData.attackSpeed;
+        towerAttackSpeed = towerData.towerAttackSpeed;
     }
 
     private void OnTriggerEnter2D(Collider2D coll)
@@ -28,7 +36,7 @@ public class tower : MonoBehaviour
             switch (state){
                 case State.Idle:
                     enemy = coll.gameObject;
-                    state = State.Idle;
+                    state = State.Attack;
                     break;
                 case State.Attack:
                     break;
@@ -82,21 +90,20 @@ public class tower : MonoBehaviour
 
     private void Update()
     {
-        if(enemy == null)
-        {
-            state = State.Idle;
-        }
 
         switch (state)
         {
             case State.Idle:
                 break;
             case State.Attack:
-                attackSpeedCD -= Time.deltaTime;
-                if (attackSpeedCD <= 0)
+                attackSpeed -= Time.deltaTime;
+                if (attackSpeed <= 0)
                 {
-                    enemy.GetComponent<enemy>().hp -= 5;
-                    attackSpeedCD = towerAttackSpeed;
+                    /* enemy.GetComponent<enemy>().hp -= towerDamage;
+                     bulletRayCast.shoot(transform.position, enemy.transform.position);*/
+                    initBullet();
+                    attackSpeed = towerAttackSpeed;
+
                 }
 
                 break;
@@ -104,8 +111,26 @@ public class tower : MonoBehaviour
                 state = State.Idle;
                 break;
         }
+        if(enemy == null)
+        {
+            state = State.Idle;
+        }
 
-        //Debug.Log(enemy);
-        /*Debug.Log(state);*/
+/*        Debug.Log(enemy);
+        Debug.Log(state);*/
+    }
+
+    private void initBullet()
+    {
+        GameObject newBullet;
+
+        Vector2 direction = enemy.transform.position - transform.position;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+        transform.rotation = Quaternion.Euler(0f, 0f, angle);
+
+        newBullet = Instantiate(bullet, transform.position, Quaternion.Euler(0f, 0f, angle) );
+        newBullet.GetComponent<bullet>().damage = towerDamage;
+        newBullet.GetComponent<Rigidbody2D>().velocity = transform.right * 20f;
     }
 }

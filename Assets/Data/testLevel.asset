@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db68165ca44f10042a3201c15737cd69, type: 3}
+  m_Name: testLevel
+  m_EditorClassIdentifier: 
+  wolfCount: 5
+  wolfInterval: 3
+  wolfSpawnTime: 10
+  panthionCount: 5
+  panthionInterval: 3
+  panthionSpawnTime: 5
+  warriorCount: 5
+  warriorInterval: 3
+  warriorSpawnTime: 0
+  gridSpawnPosition: {x: 0, y: 6}
+  wolf: {fileID: 3059785110988830980, guid: ddf1bf02ed4393e4ab77a9faad21a59d, type: 3}
+  panthion: {fileID: 5848900776747010823, guid: 0a63e558a2742fa4f8a7fc5e427fd889, type: 3}
+  warrior: {fileID: 854872925862625697, guid: 26018c76a8e43b84580d1da6ec3aed15, type: 3}

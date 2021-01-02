@@ -4,18 +4,22 @@ using UnityEngine;
 
 public class gridMap : MonoBehaviour
 {
-    public Grid<int> grid;
-    public int widht = 24;
-    public int height = 14;
-    public float scale = 1f;
+    public int widht;
+    public int height;
     public PathFinding pathFinding;
+    public float scale;
 
-    private void Start()
+
+    private void Awake()
     {
         pathFinding = new PathFinding(widht, height);
+    
+
     }
 
     private void Update()
     {
     }
+
+
 }   
